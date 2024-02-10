@@ -1,21 +1,24 @@
 import { useState } from 'react';
 
 export default function Search() {
-  const [toggleInput, setToggleInput] = useState(false);
+  const [toggleSearch, setToggleSearch] = useState(false);
   function handleClick() {
-    setToggleInput((showInput) => !showInput);
+    setToggleSearch((showSearch) => !showSearch);
   }
   return (
     <div className='flex items-center space-x-3 lg:space-x-8'>
-      {toggleInput && (
+      {toggleSearch && (
         <input
           type='search'
-          className='bg-slate-100'
+          className='bg-slate-100 rounded-md'
           autoFocus
         ></input>
       )}
       <button onClick={handleClick}>
-        <img src='./assets/icons/search.svg' />
+        <img
+          src='./assets/icons/search.svg'
+          className=''
+        />
       </button>
     </div>
   );
