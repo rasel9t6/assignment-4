@@ -1,28 +1,16 @@
-function getFormattedDate(value, type, inMS) {
-  if (!type) return value;
+export function formatDate(dateStr) {
+  // Create Date object and format with Intl.DateTimeFormat
+  const date = new Date(dateStr);
+  const options = {
+    year: 'numeric',
+    month: 'long',
+    day: '2-digit',
+    hour: '2-digit',
+    minute: '2-digit',
+    second: '2-digit',
+    timeZone: 'UTC',
+  };
+  const formattedDate = new Intl.DateTimeFormat('en-US', options).format(date);
 
-  if (!inMS) {
-    value = value * 1000;
-  }
-
-  const date = new Date(value);
-  let options;
-
-  if (type === 'date') {
-    options = {
-      weekday: 'long',
-      year: 'numeric',
-      month: 'long',
-      day: 'numeric',
-    };
-  } else if (type === 'time') {
-    options = {
-      hour: 'numeric',
-      minute: 'numeric',
-    };
-  }
-
-  return new Intl.DateTimeFormat('en-us', options).format(date);
+  return formattedDate;
 }
-
-export { getFormattedDate };

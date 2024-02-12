@@ -1,7 +1,9 @@
+import { formatDate } from '../../utils/date-util';
+
 export default function LeftNewsFeed({ article }) {
   const { title, author, description, publishedAt, source, url, urlToImage } =
     article;
-  console.log(article);
+
   return (
     <div className='col-span-12 grid grid-cols-12 gap-4'>
       {/* <!-- info --> */}
@@ -10,7 +12,9 @@ export default function LeftNewsFeed({ article }) {
           <h3 className='mb-2.5 text-2xl font-bold lg:text-[28px]'>{title}</h3>
         </a>
         <p className='text-base text-[#5C5955]'>{description}</p>
-        <p className='mt-5 text-base text-[#5C5955]'>{publishedAt}</p>
+        <p className='mt-5 text-base text-[#5C5955]'>
+          {formatDate(publishedAt)}
+        </p>
       </div>
       {/* <!-- thumb --> */}
       <div className='col-span-12 lg:col-span-8'>
