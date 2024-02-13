@@ -2,22 +2,14 @@ import LeftNewsFeed from './LeftNewsFeed';
 import RightNewsFeed from './RightNewsFeed';
 import { useContext } from 'react';
 import { NewsContext } from '../../context';
+import Spinner from '../shared/Spinner';
 
 export default function NewsFeed() {
   const { newsData, isLoading, error } = useContext(NewsContext);
 
-  // If data is still loading, display a loading spinner
-  if (isLoading) {
-    return (
-      <div className='flex justify-center items-center h-screen'>
-        <div className='animate-spin rounded-full h-32 w-32 border-t-2 border-b-2 border-purple-500'></div>
-      </div>
-    );
-  }
-
   // If there's an error or no news data, display an error message or return null
   if (error || !newsData) {
-    return <div>Something went wrong...</div>; // You can customize this message according to your needs
+    return <div>Something went wrong...</div>;
   }
   console.log(newsData);
   // Determine the articles to display based on whether it's search results or initial data
@@ -39,7 +31,21 @@ export default function NewsFeed() {
 
   return (
     <main className='my-10 lg:my-14'>
-      <p>{newsData.totalResults}</p>
+      {isLoading && <Spinner />}
+
+      {/* Display total search  result */}
+      {newsData.result && (
+        <div>
+          {newsData.result.length > 0 ? (
+            <p className='flex mx-auto justify-center items-center p-4 bg-slate-200 text-slate-600'>{`${newsData.totalResults} News found`}</p>
+          ) : (
+            <p className='flex mx-auto justify-center items-center p-4 bg-slate-200 text-slate-600'>
+              No news found
+            </p>
+          )}
+        </div>
+      )}
+
       <div className='container mx-auto grid grid-cols-12 gap-8'>
         {/* Render the left articles */}
         <div className='col-span-12 grid grid-cols-12 gap-6 self-start xl:col-span-8'>

@@ -1,7 +1,9 @@
+import { formatDate } from '../../utils/date-util';
 import Categories from '../shared/Categories';
 import Logo from '../shared/Logo';
 
 export default function Footer() {
+  const getFullYear = formatDate(new Date().toISOString(), 'year');
   return (
     <footer className='bg-neutral-800 pb-8 pt-20 text-white sm:pt-24'>
       <div className='container mx-auto'>
@@ -84,7 +86,8 @@ export default function Footer() {
       </div>
       <div className='container mt-6 lg:mt-12'>
         <p className='text-center'>
-          Copyright &copy;2023 | All rights reserved by Learn with Sumit
+          Copyright &copy; {getFullYear} | All rights reserved by Learn with
+          Sumit
         </p>
       </div>
     </footer>

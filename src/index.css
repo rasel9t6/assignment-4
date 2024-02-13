@@ -1019,3 +1019,33 @@ video {
     gap: 2rem;
   }
 }
+
+/* search input design */
+
+.search-input {
+  background-color: transparent;
+  border: none;
+  outline: none;
+  padding: 0.5rem;
+  font-size: 1rem;
+  color: #333;
+  width: 0;
+  transition: width 0.3s ease;
+}
+
+.search-input:focus {
+  width: 250px;
+  border-radius: 5px;
+}
+
+/* Blinking animation */
+@keyframes blink {
+  50% {
+    border-color: transparent;
+  }
+}
+
+.search-input:focus {
+  border: 1.5px solid #ccc;
+  animation: blink 1s infinite;
+}

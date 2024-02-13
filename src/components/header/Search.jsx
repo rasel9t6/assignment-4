@@ -8,7 +8,7 @@ export default function Search() {
   const { setEndpoint } = useContext(NewsContext);
 
   // Use the useDebounce hook to debounce the search query
-  const debouncedSearchQuery = useDebounce(searchQuery, 300);
+  const debouncedSearchQuery = useDebounce(searchQuery.trim(), 500);
 
   // Handler for input change
   const handleInputChange = (event) => {
@@ -24,7 +24,7 @@ export default function Search() {
     }
   }, [debouncedSearchQuery, setEndpoint]);
 
-  // Handler for toggle search button
+  // Handler for toggle search input
   const handleClick = () => {
     setToggleSearch((showSearch) => !showSearch);
   };
@@ -34,7 +34,7 @@ export default function Search() {
       {toggleSearch && (
         <input
           type='search'
-          className='bg-slate-100 rounded-md'
+          className='search-input shadow-sm'
           autoFocus
           value={searchQuery}
           onChange={handleInputChange}

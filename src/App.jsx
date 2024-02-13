@@ -1,4 +1,3 @@
-
 import Page from './Page';
 import NewsProvider from './provider/NewsProvider';
 

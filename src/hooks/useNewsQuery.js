@@ -27,5 +27,5 @@ export const useNewsQuery = (defaultEndpoint) => {
     fetchData();
   }, [fetchData]);
 
-  return { newsData, isLoading, error, setEndpoint };
+  return { newsData, setNewsData, isLoading, error, setEndpoint };
 };

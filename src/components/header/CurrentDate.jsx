@@ -1,4 +1,7 @@
+import { formatDate } from '../../utils/date-util';
+
 export default function CurrentDate() {
+  const currentDate = formatDate(new Date().toISOString(), 'date');
   return (
     <div className='flex items-center space-x-4'>
       <svg
@@ -51,7 +54,7 @@ export default function CurrentDate() {
           strokeLinejoin='round'
         />
       </svg>
-      <span>Thursday, February 25, 2021</span>
+      <span>{currentDate}</span>
     </div>
   );
 }

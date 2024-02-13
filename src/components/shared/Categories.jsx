@@ -1,6 +1,8 @@
 import { useContext } from 'react';
 import { NewsContext } from '../../context';
 
+import { categoriesData } from '../../utils/categoriesData';
+
 const Categories = ({ className }) => {
   const { setEndpoint } = useContext(NewsContext);
 
@@ -10,62 +12,19 @@ const Categories = ({ className }) => {
 
   return (
     <>
-      <li className={className}>
-        <a
-          href='#'
-          onClick={() => handleCategoryClick('general')}
+      {categoriesData.map(({ label, value }, index) => (
+        <li
+          key={index}
+          className={className}
         >
-          General
-        </a>
-      </li>
-      <li>
-        <a
-          href='#'
-          onClick={() => handleCategoryClick('business')}
-        >
-          Business
-        </a>
-      </li>
-      <li>
-        <a
-          href='#'
-          onClick={() => handleCategoryClick('entertainment')}
-        >
-          Entertainment
-        </a>
-      </li>
-      <li>
-        <a
-          href='#'
-          onClick={() => handleCategoryClick('health')}
-        >
-          Health
-        </a>
-      </li>
-      <li>
-        <a
-          href='#'
-          onClick={() => handleCategoryClick('science')}
-        >
-          Science
-        </a>
-      </li>
-      <li>
-        <a
-          href='#'
-          onClick={() => handleCategoryClick('sports')}
-        >
-          Sports
-        </a>
-      </li>
-      <li>
-        <a
-          href='#'
-          onClick={() => handleCategoryClick('technology')}
-        >
-          Technology
-        </a>
-      </li>
+          <a
+            href='#'
+            onClick={() => handleCategoryClick(value)}
+          >
+            {label}
+          </a>
+        </li>
+      ))}
     </>
   );
 };
