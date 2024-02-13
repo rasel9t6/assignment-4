@@ -5,29 +5,33 @@ import { NewsContext } from '../../context';
 import Spinner from '../shared/Spinner';
 
 export default function NewsFeed() {
-  const { newsData, isLoading, error } = useContext(NewsContext);
+  const { newsData, isLoading, getArticlesToDisplay, splitArticles } =
+    useContext(NewsContext);
 
-  // If there's an error or no news data, display an error message or return null
-  if (error || !newsData) {
+  const {
+    error: hasError,
+    articles,
+    result,
+    noNewsFound,
+  } = getArticlesToDisplay();
+
+  // Display loading spinner if data is still loading
+  if (isLoading) {
+    return <Spinner />;
+  }
+
+  // Display error message if there's an error or no news data
+  if (hasError) {
     return <div>Something went wrong...</div>;
   }
-  console.log(newsData);
-  // Determine the articles to display based on whether it's search results or initial data
-  let articlesToDisplay = [];
-  if (newsData.articles) {
-    articlesToDisplay = newsData.articles;
-  } else if (newsData.result) {
-    articlesToDisplay = newsData.result;
-  } else {
+
+  // Display no news found message if applicable
+  if (noNewsFound) {
     return <div>No news found.</div>;
   }
 
-  // Calculate the midpoint of the articles array
-  const midpoint = Math.ceil(articlesToDisplay.length / 2);
-
-  // Split the articles array into two halves
-  const leftArticles = articlesToDisplay.slice(0, midpoint);
-  const rightArticles = articlesToDisplay.slice(midpoint);
+  // Determine which articles to display
+  const { leftArticles, rightArticles } = splitArticles(articles || result);
 
   return (
     <main className='my-10 lg:my-14'>
@@ -35,14 +39,12 @@ export default function NewsFeed() {
 
       {/* Display total search  result */}
       {newsData.result && (
-        <div>
-          {newsData.result.length > 0 ? (
-            <p className='flex mx-auto justify-center items-center p-4 bg-slate-200 text-slate-600'>{`${newsData.totalResults} News found`}</p>
-          ) : (
-            <p className='flex mx-auto justify-center items-center p-4 bg-slate-200 text-slate-600'>
-              No news found
-            </p>
-          )}
+        <div className='flex justify-center items-center mt-4'>
+          <p className='py-2 px-3 bg-gradient-to-l rounded-md text-[#00835c] from-[#cdfee5] to-[#63f2b9]'>
+            {newsData.result.length > 0
+              ? `${newsData.totalResults} News found`
+              : 'No news found'}
+          </p>
         </div>
       )}
 

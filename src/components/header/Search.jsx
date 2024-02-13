@@ -34,7 +34,8 @@ export default function Search() {
       {toggleSearch && (
         <input
           type='search'
-          className='search-input shadow-sm'
+          placeholder='Search news...'
+          className='search-input shadow-md '
           autoFocus
           value={searchQuery}
           onChange={handleInputChange}

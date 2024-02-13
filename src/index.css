@@ -1030,7 +1030,7 @@ video {
   font-size: 1rem;
   color: #333;
   width: 0;
-  transition: width 0.3s ease;
+  transition: width 0.5s ease;
 }
 
 .search-input:focus {
@@ -1046,6 +1046,6 @@ video {
 }
 
 .search-input:focus {
-  border: 1.5px solid #ccc;
+  border: 1.5px solid #00a46e;
   animation: blink 1s infinite;
 }
