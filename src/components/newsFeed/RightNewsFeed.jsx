@@ -1,7 +1,7 @@
 import { formatDate } from '../../utils/date-util';
 
 export default function rightNewsFeed({ article }) {
-  const { title, description, content, publishedAt, urlToImage } = article;
+  const { title, url, description, content, publishedAt, urlToImage } = article;
   return (
     <div className='space-y-6 divide-y-2 divide-[#D5D1C9]'>
       {/* <!-- news item --> */}
@@ -15,7 +15,7 @@ export default function rightNewsFeed({ article }) {
         />
         {/* <!-- info --> */}
         <div className='col-span-12 mt-6 md:col-span-4'>
-          <a href='#'>
+          <a href={url}>
             <h3 className='mb-2.5 text-xl font-bold lg:text-[20px]'>{title}</h3>
           </a>
           <p className='text-base text-[#292219]'>{content || description}</p>
