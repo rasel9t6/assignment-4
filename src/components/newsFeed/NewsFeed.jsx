@@ -39,7 +39,7 @@ export default function NewsFeed() {
 
       {/* Display total search  result */}
       {newsData.result && (
-        <div className='flex justify-center items-center mt-4'>
+        <div className='flex justify-center items-center m-4'>
           <p className='py-2 px-3 bg-gradient-to-l rounded-md text-[#00835c] from-[#cdfee5] to-[#63f2b9]'>
             {newsData.result.length > 0
               ? `${newsData.totalResults} News found`
