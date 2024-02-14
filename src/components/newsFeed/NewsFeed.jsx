@@ -22,12 +22,24 @@ export default function NewsFeed() {
 
   // Display error message if there's an error or no news data
   if (hasError) {
-    return <div>Something went wrong...</div>;
+    return (
+      <div className='flex justify-center items-center m-4'>
+        <p className='py-2 px-3 bg-gradient-to-l rounded-md text-[#00835c] from-[#cdfee5] to-[#63f2b9]'>
+          Something went wrong...
+        </p>
+      </div>
+    );
   }
 
   // Display no news found message if applicable
   if (noNewsFound) {
-    return <div>No news found.</div>;
+    return (
+      <div className='flex justify-center items-center m-4'>
+        <p className='py-2 px-3 bg-gradient-to-l rounded-md text-[#00835c] from-[#cdfee5] to-[#63f2b9]'>
+          No news found...
+        </p>
+      </div>
+    );
   }
 
   // Determine which articles to display
@@ -35,8 +47,6 @@ export default function NewsFeed() {
 
   return (
     <main className='my-10 lg:my-14'>
-      {isLoading && <Spinner />}
-
       {/* Display total search  result */}
       {newsData.result && (
         <div className='flex justify-center items-center m-4'>
@@ -49,7 +59,7 @@ export default function NewsFeed() {
       )}
 
       <div className='container mx-auto grid grid-cols-12 gap-8'>
-        {/* Render the left articles */}
+        {/* Render the left side articles */}
         <div className='col-span-12 grid grid-cols-12 gap-6 self-start xl:col-span-8'>
           {leftArticles.map((article) => (
             <LeftNewsFeed
@@ -58,7 +68,7 @@ export default function NewsFeed() {
             />
           ))}
         </div>
-        {/* Render the right articles */}
+        {/* Render the right side articles */}
         <div className='col-span-12 self-start xl:col-span-4'>
           {rightArticles.map((article) => (
             <RightNewsFeed

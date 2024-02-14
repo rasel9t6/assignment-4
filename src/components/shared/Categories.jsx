@@ -15,14 +15,9 @@ const Categories = ({ className }) => {
       {categoriesData.map(({ label, value }, index) => (
         <li
           key={index}
-          className={className}
+          className={`${className} cursor-pointer`}
         >
-          <a
-            href='#'
-            onClick={() => handleCategoryClick(value)}
-          >
-            {label}
-          </a>
+          <a onClick={() => handleCategoryClick(value)}>{label}</a>
         </li>
       ))}
     </>
